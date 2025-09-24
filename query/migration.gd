@@ -26,3 +26,7 @@ extends Node
 		relation_level INT DEFAULT 0
 	)
 "
+
+@export var create_event_table = "
+	
+"
