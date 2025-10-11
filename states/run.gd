@@ -7,6 +7,7 @@ var friction: float = 0.95
 
 func enter() -> void:
 	animated_sprite = player_node.get_node("AnimatedSprite2D")
+
 	animated_sprite.play("run")
 
 func handle_input(event: InputEvent) -> void:
