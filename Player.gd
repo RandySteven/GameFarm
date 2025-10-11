@@ -1,18 +1,19 @@
 extends CharacterBody2D
 
-const speed = 50;
+@onready var state_machine: StateMachine = $StateMachine
 
-enum PlayerState {
-	IDLE = 0,
-	RUNNING = 10,
-	JUMPING = 20
-}
-
-var currState = PlayerState.IDLE;
+func _ready() -> void:
+	# The state machine will automatically initialize and set up states
+	pass
 
 func _physics_process(delta: float) -> void:
-	if currState == PlayerState.RUNNING:
-		var runState = RunState.new()
-		runState.enter()
-		runState.physics_update(speed)
+	# State machine handles physics updates
+	pass
+
+func _process(delta: float) -> void:
+	# State machine handles regular updates
+	pass
+
+func _unhandled_input(event: InputEvent) -> void:
+	# State machine handles input
 	pass

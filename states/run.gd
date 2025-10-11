@@ -9,6 +9,10 @@ func enter() -> void:
 	animated_sprite = player_node.get_node("AnimatedSprite2D")
 	animated_sprite.play("run")
 
+func handle_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_accept"):  # Check bag while running
+		state_machine.transition_to("CheckBagState")
+
 func physics_update(_delta: float) -> void:
 	var horizontal_direction = Input.get_axis("move_left", "move_right")
 	var vertical_direction = Input.get_axis("move_up", "move_down")

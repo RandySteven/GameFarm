@@ -1,54 +1,57 @@
-[gd_scene load_steps=16 format=3 uid="uid://cn48qj57y7hua"]
+[gd_scene load_steps=17 format=3 uid="uid://cn48qj57y7hua"]
 
-[ext_resource type="Script" uid="uid://bnh5ybk76mo0s" path="res://Player.gd" id="1_0e48y"]
-[ext_resource type="Texture2D" uid="uid://jfvgy36ghisb" path="res://assets/sprites/Moogle Sprite.png" id="1_wtcfe"]
+[ext_resource type="Script" uid="uid://bnh5ybk76mo0s" path="res://Player.gd" id="1_7guup"]
+[ext_resource type="Texture2D" uid="uid://jfvgy36ghisb" path="res://assets/sprites/Moogle Sprite.png" id="2_ja8gy"]
+
+[sub_resource type="TileSet" id="TileSet_7guup"]
+tile_size = Vector2i(48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0e48y"]
-atlas = ExtResource("1_wtcfe")
+atlas = ExtResource("2_ja8gy")
 region = Rect2(0, 0, 46, 49)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_epypp"]
-atlas = ExtResource("1_wtcfe")
+atlas = ExtResource("2_ja8gy")
 region = Rect2(46, 0, 46, 49)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0hol4"]
-atlas = ExtResource("1_wtcfe")
+atlas = ExtResource("2_ja8gy")
 region = Rect2(92, 0, 46, 49)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q6r6c"]
-atlas = ExtResource("1_wtcfe")
+atlas = ExtResource("2_ja8gy")
 region = Rect2(0, 49, 46, 49)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kdubu"]
-atlas = ExtResource("1_wtcfe")
+atlas = ExtResource("2_ja8gy")
 region = Rect2(46, 49, 46, 49)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d21ai"]
-atlas = ExtResource("1_wtcfe")
+atlas = ExtResource("2_ja8gy")
 region = Rect2(92, 49, 46, 49)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rj586"]
-atlas = ExtResource("1_wtcfe")
+atlas = ExtResource("2_ja8gy")
 region = Rect2(0, 98, 46, 49)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4d7sh"]
-atlas = ExtResource("1_wtcfe")
+atlas = ExtResource("2_ja8gy")
 region = Rect2(46, 98, 46, 49)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ir8iy"]
-atlas = ExtResource("1_wtcfe")
+atlas = ExtResource("2_ja8gy")
 region = Rect2(92, 98, 46, 49)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hqns4"]
-atlas = ExtResource("1_wtcfe")
+atlas = ExtResource("2_ja8gy")
 region = Rect2(0, 147, 46, 49)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x0ka3"]
-atlas = ExtResource("1_wtcfe")
+atlas = ExtResource("2_ja8gy")
 region = Rect2(46, 147, 46, 49)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0h7mo"]
-atlas = ExtResource("1_wtcfe")
+atlas = ExtResource("2_ja8gy")
 region = Rect2(92, 147, 46, 49)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y32ns"]
@@ -97,14 +100,24 @@ animations = [{
 
 [node name="PlayerFarm" type="Node2D"]
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-script = ExtResource("1_0e48y")
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_7guup")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+[node name="Player" type="Node2D" parent="."]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Player"]
+script = ExtResource("1_7guup")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player/CharacterBody2D"]
 position = Vector2(53, 82)
 sprite_frames = SubResource("SpriteFrames_y32ns")
 frame = 7
 frame_progress = 0.035276968
 
-[node name="TileMap" type="TileMap" parent="."]
-format = 2
+[node name="StateMachine" type="Node2D" parent="Player"]
+
+[node name="IdleState" type="Node2D" parent="Player/StateMachine"]
+
+[node name="RunState" type="Node2D" parent="Player/StateMachine"]
+
+[node name="CheckBagState" type="Node2D" parent="Player/StateMachine"]
