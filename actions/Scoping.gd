@@ -8,5 +8,6 @@ func _ready() -> void:
 	return
 
 func scoping():
-	
+	# if next grid of dirt is empty
+		#then set grid of dirt as already_scoped
 	pass

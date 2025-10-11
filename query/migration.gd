@@ -28,5 +28,7 @@ extends Node
 "
 
 @export var create_event_table = "
-	
+	CREATE TABLE IF NOT EXISTS events (
+		id INT PRIMARY KEY,
+	)
 "
