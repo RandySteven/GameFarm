@@ -1,19 +1,64 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
-@onready var state_machine: StateMachine = $StateMachine
+#@onready var state_machine: StateMachine = $StateMachine
+var cardinal_direction : Vector2 = Vector2.DOWN
+var direction : Vector2 = Vector2.ZERO
+var move_speed : float = 100.0
+var state : String = "idle"
+
+@onready var animation_player : AnimationPlayer = $AnimationPlayer
+@onready var sprite : Sprite2D = $Sprite2D
 
 func _ready() -> void:
-	# The state machine will automatically initialize and set up states
-	pass
-
-func _physics_process(delta: float) -> void:
-	# State machine handles physics updates
 	pass
 
 func _process(delta: float) -> void:
-	# State machine handles regular updates
+	direction.x = Input.get_action_strength("move_right") - Input.get_action_raw_strength("move_left")
+	direction.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
+	
+	velocity = direction * move_speed
+	
+	if SetState() == true || SetDirection() == true:
+		UpdateAnimation()
+	
 	pass
 
-func _unhandled_input(event: InputEvent) -> void:
-	# State machine handles input
+func _physics_process(delta: float) -> void:
+	move_and_slide()
+
+func SetDirection() -> bool:
+	var new_dir : Vector2 = cardinal_direction
+	if direction == Vector2.ZERO:
+		return false
+	
+	if direction.y == 0:
+		new_dir = Vector2.LEFT if direction.x < 0 else Vector2.RIGHT
+	elif direction.x == 0:
+		new_dir = Vector2.UP if direction.y < 0 else Vector2.DOWN
+
+	if new_dir == cardinal_direction:
+		return false
+	cardinal_direction = new_dir
+	sprite.scale.x = -1 if cardinal_direction == Vector2.LEFT else 1
+	return true
+	
+func SetState() -> bool:
+	var new_state : String = "idle" if direction == Vector2.ZERO else "walk"
+	if new_state == state:
+		return false
+	state = new_state
+	return true
+
+func UpdateAnimation() :
+	var curr_state : String = state + "_" + AnimDirection() 
+	print(curr_state)
+	animation_player.play( curr_state )
 	pass
+	
+func AnimDirection() :
+	if cardinal_direction == Vector2.DOWN:
+		return "down"
+	elif cardinal_direction == Vector2.UP:
+		return "up"
+	else:
+		return "side"
