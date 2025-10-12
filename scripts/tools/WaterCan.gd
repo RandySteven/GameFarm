@@ -7,25 +7,29 @@ func enter() -> void:
 	pass
 
 func upgrade(next_level : String) -> bool:
+	var possible_upgrade = false
 	if next_level == level_water_can:
-		return false
+		return possible_upgrade
+
 	if level_water_can == "steel" && next_level == "copper":
-		level_water_can = next_level
 		water_capacity = 60
-		return true
+		level_water_can = next_level
+		possible_upgrade = true
 	if level_water_can == "copper" && next_level == "silver":
 		level_water_can = next_level
 		water_capacity = 90
-		return true
+		possible_upgrade = true
 	if level_water_can == "silver" && next_level == "gold":
 		level_water_can = next_level
 		water_capacity = 120
-		return true
+		possible_upgrade = true
 	if level_water_can == "gold" && next_level == "diamond":
 		level_water_can = next_level
 		water_capacity = 180
-		return true
-	return false
+		possible_upgrade = true
+
+	level_water_can = next_level
+	return possible_upgrade
 
 	
 func process(_delta : float) -> WaterCan:

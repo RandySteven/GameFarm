@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://cn48qj57y7hua"]
+[gd_scene load_steps=16 format=3 uid="uid://cn48qj57y7hua"]
 
 [ext_resource type="Script" uid="uid://bnh5ybk76mo0s" path="res://scripts/Player.gd" id="1_mmcj8"]
 [ext_resource type="Texture2D" uid="uid://c23javtp1qitg" path="res://assets/sprites/2D Action Adventure Assets ExamplePlayerSprite.png" id="2_1acyo"]
 [ext_resource type="Script" uid="uid://bckqgefd0xm0q" path="res://scripts/states/WalkState.gd" id="3_1acyo"]
 [ext_resource type="Script" uid="uid://j24cmmuq5gop" path="res://scripts/states/PlayerStateMachine.gd" id="3_2ycet"]
 [ext_resource type="Script" uid="uid://ce8n3gm1yihtf" path="res://scripts/states/IdleState.gd" id="3_j5yxp"]
+[ext_resource type="Script" uid="uid://c5vcum8dg8tej" path="res://scripts/tools/ToolBag.gd" id="6_e1c8x"]
 
 [sub_resource type="TileSet" id="TileSet_7guup"]
 tile_size = Vector2i(48, 48)
@@ -165,3 +166,6 @@ script = ExtResource("3_j5yxp")
 
 [node name="Walk" type="Node2D" parent="Player/StateMachine"]
 script = ExtResource("3_1acyo")
+
+[node name="ToolBag" type="Node2D" parent="Player"]
+script = ExtResource("6_e1c8x")

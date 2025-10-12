@@ -4,7 +4,7 @@ class_name WalkState extends State
 @export var move_speed: float = 300.0 
 
 func enter() -> void:
-	player.update_animationdwadwasd("walk")
+	player.update_animation("walk")
 	
 func process(_delta : float) -> State:
 	if player.direction == Vector2.ZERO:
