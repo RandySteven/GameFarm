@@ -1,4 +1,4 @@
-class_name WaterCan extends Item
+class_name WaterCan extends Tool
 
 var water_capacity : int = 60
 var level_water_can : String = "bronze"

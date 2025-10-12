@@ -1,4 +1,4 @@
-class_name Item extends Node
+class_name Tool extends Node
 
 static var player: CharacterBody2D
 
@@ -8,13 +8,13 @@ func enter() -> void:
 func exit() -> void:
 	pass
 	
-func process(delta : float) -> Item:
+func process(delta : float) -> Tool:
 	return null
 
-func physics(delta : float) -> Item:
+func physics(delta : float) -> Tool:
 	return null
 
-func handle_input(event : InputEvent) -> Item:
+func handle_input(event : InputEvent) -> Tool:
 	return null
 
 static func set_player(player : CharacterBody2D) -> void:

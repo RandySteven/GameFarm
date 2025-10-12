@@ -1,4 +1,4 @@
-class_name Scope extends Item
+class_name Scope extends Tool
 
 static var level_scope : String = "bronze"
 static var consume_grid_row = 1
