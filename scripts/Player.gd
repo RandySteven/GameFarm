@@ -8,28 +8,23 @@ var state : String = "idle"
 
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 @onready var sprite : Sprite2D = $Sprite2D
+@onready var state_machine : PlayerStateMachine = $StateMachine
 
 func _ready() -> void:
-	pass
+	state_machine.initialize(self)
 
 func _process(delta: float) -> void:
-	direction.x = Input.get_action_strength("move_right") - Input.get_action_raw_strength("move_left")
-	direction.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
-	
-	velocity = direction * move_speed
-	
-	if SetState() == true || SetDirection() == true:
-		UpdateAnimation()
-	
-	pass
+	direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+
 
 func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func SetDirection() -> bool:
-	var new_dir : Vector2 = cardinal_direction
 	if direction == Vector2.ZERO:
 		return false
+
+	var new_dir : Vector2 = cardinal_direction
 	
 	if direction.y == 0:
 		new_dir = Vector2.LEFT if direction.x < 0 else Vector2.RIGHT
@@ -38,8 +33,11 @@ func SetDirection() -> bool:
 
 	if new_dir == cardinal_direction:
 		return false
+
 	cardinal_direction = new_dir
+
 	sprite.scale.x = -1 if cardinal_direction == Vector2.LEFT else 1
+
 	return true
 	
 func SetState() -> bool:
@@ -49,11 +47,9 @@ func SetState() -> bool:
 	state = new_state
 	return true
 
-func UpdateAnimation() :
-	var curr_state : String = state + "_" + AnimDirection() 
-	print(curr_state)
+func UpdateAnimation(state_name : String) :
+	var curr_state : String = state_name + "_" + AnimDirection() 
 	animation_player.play( curr_state )
-	pass
 	
 func AnimDirection() :
 	if cardinal_direction == Vector2.DOWN:
