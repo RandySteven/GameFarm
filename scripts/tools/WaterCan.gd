@@ -1,7 +1,7 @@
 class_name WaterCan extends Tool
 
-var water_capacity : int = 60
-var level_water_can : String = "bronze"
+var water_capacity : int = 30
+var level_water_can : String = "steel"
 
 func enter() -> void:
 	pass
@@ -9,7 +9,11 @@ func enter() -> void:
 func upgrade(next_level : String) -> bool:
 	if next_level == level_water_can:
 		return false
-	if level_water_can == "bronze" && next_level == "silver":
+	if level_water_can == "steel" && next_level == "copper":
+		level_water_can = next_level
+		water_capacity = 60
+		return true
+	if level_water_can == "copper" && next_level == "silver":
 		level_water_can = next_level
 		water_capacity = 90
 		return true
