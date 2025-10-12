@@ -20,7 +20,7 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	move_and_slide()
 
-func SetDirection() -> bool:
+func set_direction() -> bool:
 	if direction == Vector2.ZERO:
 		return false
 
@@ -40,18 +40,18 @@ func SetDirection() -> bool:
 
 	return true
 	
-func SetState() -> bool:
+func set_state() -> bool:
 	var new_state : String = "idle" if direction == Vector2.ZERO else "walk"
 	if new_state == state:
 		return false
 	state = new_state
 	return true
 
-func UpdateAnimation(state_name : String) :
-	var curr_state : String = state_name + "_" + AnimDirection() 
+func update_animation(state_name : String) :
+	var curr_state : String = state_name + "_" + animation_direction() 
 	animation_player.play( curr_state )
 	
-func AnimDirection() :
+func animation_direction() :
 	if cardinal_direction == Vector2.DOWN:
 		return "down"
 	elif cardinal_direction == Vector2.UP:
