@@ -28,3 +28,10 @@ func upgrade(next_level : String) -> bool:
 
 	level_scope = next_level
 	return possible_upgrade
+
+func process(delta : float) -> Tool:
+	#1. check next grid is lahan and belum di cangkul
+	#2. kalau iya
+	#2.1. upgrade next grid jadi lahan yang udah dicangkul
+	
+	return null

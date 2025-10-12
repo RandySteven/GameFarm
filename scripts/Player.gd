@@ -7,6 +7,8 @@ var move_speed : float = 100.0
 var state : String = "idle"
 var current_tool : Tool
 
+var stamina : int = 100
+
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 @onready var sprite : Sprite2D = $Sprite2D
 @onready var state_machine : PlayerStateMachine = $StateMachine
@@ -60,3 +62,9 @@ func animation_direction() :
 		return "up"
 	else:
 		return "side"
+
+func decrease_stamina(minus : int) -> void:
+	stamina -= minus
+	
+func increase_stamina(plus : int) -> void:
+	stamina += plus

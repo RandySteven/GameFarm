@@ -17,5 +17,8 @@ func physics(delta : float) -> Tool:
 func handle_input(event : InputEvent) -> Tool:
 	return null
 
+func upgrade(next_level : String) -> bool:
+	return false
+
 static func set_player(player : CharacterBody2D) -> void:
 	player = player
