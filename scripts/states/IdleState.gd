@@ -2,7 +2,6 @@ class_name IdleState extends State
 
 @onready var walk_state : State = $"../Walk"
 @onready var scope_state : State = $"../Scope"
-@onready var water_state : State = $"../Water"
 
 func enter() -> void:
 	player.update_animation("idle")

@@ -1,0 +1,254 @@
+[gd_scene load_steps=20 format=3 uid="uid://j45mhs6c5nxo"]
+
+[ext_resource type="Script" uid="uid://bnh5ybk76mo0s" path="res://scripts/Player.gd" id="1_rov4t"]
+[ext_resource type="Texture2D" uid="uid://dml0waiqjkggo" path="res://assets/sprites/Cute_Fantasy_Free/Player/Player.png" id="1_vltvv"]
+[ext_resource type="Script" uid="uid://j24cmmuq5gop" path="res://scripts/states/PlayerStateMachine.gd" id="2_7541a"]
+[ext_resource type="Texture2D" uid="uid://boslil8l50pe3" path="res://assets/sprites/Cute_Fantasy_Free/Player/Player_Actions.png" id="3_go23t"]
+[ext_resource type="Script" uid="uid://bckqgefd0xm0q" path="res://scripts/states/WalkState.gd" id="3_rov4t"]
+[ext_resource type="Script" uid="uid://ce8n3gm1yihtf" path="res://scripts/states/IdleState.gd" id="4_go23t"]
+[ext_resource type="Script" uid="uid://bp5evh6svgn3w" path="res://scripts/states/ScopeState.gd" id="7_loie6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rov4t"]
+radius = 7.0
+height = 24.0
+
+[sub_resource type="Animation" id="Animation_loie6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/FarmerEffectSprite:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 7)]
+}
+
+[sub_resource type="Animation" id="Animation_2qlof"]
+resource_name = "idle_down"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.20000003, 0.39999998, 0.6, 0.79999995, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 4, 1, 3, 5, 2]
+}
+
+[sub_resource type="Animation" id="Animation_hkter"]
+resource_name = "idle_side"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.79999995, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vltvv"]
+resource_name = "idle_up"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.19823332, 0.4, 0.6, 0.79999995, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2), Vector2i(4, 2), Vector2i(5, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_mflhc"]
+resource_name = "scope_down"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/FarmerEffectSprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 7), Vector2i(1, 7), Vector2i(0, 7)]
+}
+
+[sub_resource type="Animation" id="Animation_cwfvh"]
+resource_name = "scope_side"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/FarmerEffectSprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.19991225, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 6), Vector2i(1, 6), Vector2i(0, 6)]
+}
+
+[sub_resource type="Animation" id="Animation_mvx3d"]
+resource_name = "scope_up"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/FarmerEffectSprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.20620869, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 8), Vector2i(1, 8), Vector2i(0, 8)]
+}
+
+[sub_resource type="Animation" id="Animation_rov4t"]
+resource_name = "walk_down"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.19994223, 0.4, 0.6, 0.79999995, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 3), Vector2i(1, 3), Vector2i(2, 3), Vector2i(3, 3), Vector2i(4, 3), Vector2i(5, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_go23t"]
+resource_name = "walk_side"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.79999995, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 4), Vector2i(1, 4), Vector2i(2, 4), Vector2i(3, 4), Vector2i(4, 4), Vector2i(5, 4)]
+}
+
+[sub_resource type="Animation" id="Animation_7541a"]
+resource_name = "walk_up"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 5), Vector2i(1, 5), Vector2i(2, 5), Vector2i(3, 5), Vector2i(4, 5), Vector2i(5, 5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hkter"]
+_data = {
+&"RESET": SubResource("Animation_loie6"),
+&"idle_down": SubResource("Animation_2qlof"),
+&"idle_side": SubResource("Animation_hkter"),
+&"idle_up": SubResource("Animation_vltvv"),
+&"scope_down": SubResource("Animation_mflhc"),
+&"scope_side": SubResource("Animation_cwfvh"),
+&"scope_up": SubResource("Animation_mvx3d"),
+&"walk_down": SubResource("Animation_rov4t"),
+&"walk_side": SubResource("Animation_go23t"),
+&"walk_up": SubResource("Animation_7541a")
+}
+
+[node name="Farmer" type="CharacterBody2D"]
+position = Vector2(1, 1)
+collision_mask = 16
+script = ExtResource("1_rov4t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(74, 44)
+texture = ExtResource("1_vltvv")
+hframes = 6
+vframes = 10
+frame = 6
+
+[node name="FarmerEffectSprite" type="Sprite2D" parent="Sprite2D"]
+visible = false
+position = Vector2(0, -1)
+texture = ExtResource("3_go23t")
+hframes = 2
+vframes = 12
+frame = 14
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(74, 41)
+shape = SubResource("CapsuleShape2D_rov4t")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_motion_local = true
+libraries = {
+&"": SubResource("AnimationLibrary_hkter")
+}
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_7541a")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("4_go23t")
+
+[node name="Walk" type="Node" parent="StateMachine"]
+script = ExtResource("3_rov4t")
+
+[node name="Scope" type="Node" parent="StateMachine"]
+script = ExtResource("7_loie6")

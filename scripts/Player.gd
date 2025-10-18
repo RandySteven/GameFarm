@@ -11,8 +11,8 @@ var stamina : int = 100
 
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 @onready var sprite : Sprite2D = $Sprite2D
+@onready var farmerEffectSprite : Sprite2D = $Sprite2D/FarmerEffectSprite
 @onready var state_machine : PlayerStateMachine = $StateMachine
-@onready var tool_bag : ToolBag = $ToolBag
 
 func _ready() -> void:
 	state_machine.initialize(self)
@@ -52,8 +52,13 @@ func set_state() -> bool:
 	return true
 
 func update_animation(state_name : String) :
+	if state_name == "scope":
+		farmerEffectSprite.visible = true
+		sprite.visible = false
 	var curr_state : String = state_name + "_" + animation_direction() 
 	animation_player.play( curr_state )
+	farmerEffectSprite.visible = false
+	sprite.visible = true
 	
 func animation_direction() :
 	if cardinal_direction == Vector2.DOWN:

@@ -33,5 +33,5 @@ func process(delta : float) -> Tool:
 	#1. check next grid is lahan and belum di cangkul
 	#2. kalau iya
 	#2.1. upgrade next grid jadi lahan yang udah dicangkul
-	
+	player.decrease_stamina(10)
 	return null
