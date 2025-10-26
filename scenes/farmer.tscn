@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://j45mhs6c5nxo"]
+[gd_scene load_steps=60 format=3 uid="uid://j45mhs6c5nxo"]
 
 [ext_resource type="Script" uid="uid://bnh5ybk76mo0s" path="res://scripts/Player.gd" id="1_rov4t"]
 [ext_resource type="Texture2D" uid="uid://dml0waiqjkggo" path="res://assets/sprites/Cute_Fantasy_Free/Player/Player.png" id="1_vltvv"]
@@ -182,6 +182,30 @@ region = Rect2(128, 160, 32, 32)
 atlas = ExtResource("1_vltvv")
 region = Rect2(160, 160, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_pl3j4"]
+atlas = ExtResource("3_go23t")
+region = Rect2(0, 432, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wswl4"]
+atlas = ExtResource("3_go23t")
+region = Rect2(48, 432, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftdsk"]
+atlas = ExtResource("3_go23t")
+region = Rect2(0, 528, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0b8x6"]
+atlas = ExtResource("3_go23t")
+region = Rect2(48, 528, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqnnc"]
+atlas = ExtResource("3_go23t")
+region = Rect2(0, 480, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x705u"]
+atlas = ExtResource("3_go23t")
+region = Rect2(48, 480, 48, 48)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_kma2d"]
 animations = [{
 "frames": [{
@@ -354,6 +378,39 @@ animations = [{
 "loop": true,
 "name": &"walk_up",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pl3j4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wswl4")
+}],
+"loop": true,
+"name": &"water_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ftdsk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0b8x6")
+}],
+"loop": true,
+"name": &"water_side",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sqnnc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x705u")
+}],
+"loop": true,
+"name": &"water_up",
+"speed": 5.0
 }]
 
 [node name="Farmer" type="CharacterBody2D"]
@@ -379,7 +436,9 @@ script = ExtResource("7_loie6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_kma2d")
-animation = &"scope_side"
+animation = &"water_up"
+frame = 1
+frame_progress = 0.3539834
 
 [node name="Bag" type="Node" parent="."]
 
@@ -388,3 +447,5 @@ script = ExtResource("8_a2y1s")
 
 [node name="Scope" type="Node" parent="Bag/ToolBag"]
 script = ExtResource("9_wv3kr")
+
+[node name="ItemBag" type="Node" parent="Bag"]

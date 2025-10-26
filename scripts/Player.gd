@@ -14,6 +14,8 @@ var stamina : int = 100
 @onready var farmerEffectSprite : Sprite2D = $Sprite2D/FarmerEffectSprite
 @onready var state_machine : PlayerStateMachine = $StateMachine
 
+@onready var tool_bag : ToolBag = $ToolBag
+
 func _ready() -> void:
 	state_machine.initialize(self)
 
