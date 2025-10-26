@@ -436,9 +436,9 @@ script = ExtResource("7_loie6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_kma2d")
-animation = &"water_up"
+animation = &"water_side"
 frame = 1
-frame_progress = 0.3539834
+frame_progress = 0.4923208
 
 [node name="Bag" type="Node" parent="."]
 

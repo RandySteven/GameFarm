@@ -14,10 +14,11 @@ var stamina : int = 100
 @onready var farmerEffectSprite : Sprite2D = $Sprite2D/FarmerEffectSprite
 @onready var state_machine : PlayerStateMachine = $StateMachine
 
-@onready var tool_bag : ToolBag = $ToolBag
+@onready var tool_bag : ToolBag = $Bag/ToolBag
 
 func _ready() -> void:
 	state_machine.initialize(self)
+	tool_bag.initialize(self)
 
 func _process(delta: float) -> void:
 	direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
