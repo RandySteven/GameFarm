@@ -1,13 +1,18 @@
 class_name State extends Node
 
 static var player: CharacterBody2D
+static var animated_sprite_2d : AnimatedSprite2D
 
 var state_machine: Node
+signal transition
 
 func enter() -> void:
 	pass
 
 func exit() -> void:
+	pass
+
+func on_next_transition() -> void:
 	pass
 	
 func process(delta : float) -> State:

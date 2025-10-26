@@ -22,13 +22,19 @@ func initialize(player: CharacterBody2D) -> void: # [00:12:15]
 		process_mode = Node.PROCESS_MODE_INHERIT # [00:16:08]
 
 func _process(delta: float) -> void: # [00:16:47]
-	change_state(current_state.process(delta)) 
+	var new_state: State = current_state.process(delta)
+	if new_state != null:
+		change_state(new_state) 
 
 func _physics_process(delta: float) -> void: # [00:17:54]
-	change_state(current_state.physics(delta))
+	var new_state: State = current_state.physics(delta)
+	if new_state != null:
+		change_state(new_state)
 
 func _unhandled_input(event: InputEvent) -> void: # [00:18:24]
-	change_state(current_state.handle_input(event))
+	var new_state: State = current_state.handle_input(event)
+	if new_state != null:
+		change_state(new_state)
 
 func change_state(new_state: State) -> void: # [00:09:27]
 	if new_state == null or new_state == current_state: # [00:10:13]

@@ -17,8 +17,9 @@ config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=1600
-window/size/viewport_height=1080
+window/size/mode=3
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [input]
 
@@ -51,4 +52,5 @@ scope={
 [layer_names]
 
 2d_physics/layer_1="Player"
+2d_physics/layer_2="Animal"
 2d_physics/layer_5="Wall"

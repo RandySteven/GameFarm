@@ -10,7 +10,7 @@ var current_tool : Tool
 var stamina : int = 100
 
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
-@onready var sprite : Sprite2D = $Sprite2D
+@onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var farmerEffectSprite : Sprite2D = $Sprite2D/FarmerEffectSprite
 @onready var state_machine : PlayerStateMachine = $StateMachine
 
@@ -22,7 +22,8 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	move_and_slide()
+	#move_and_slide()
+	update_movement(delta)
 
 func set_direction() -> bool:
 	if direction == Vector2.ZERO:
@@ -52,13 +53,16 @@ func set_state() -> bool:
 	return true
 
 func update_animation(state_name : String) :
-	if state_name == "scope":
-		farmerEffectSprite.visible = true
-		sprite.visible = false
 	var curr_state : String = state_name + "_" + animation_direction() 
-	animation_player.play( curr_state )
-	farmerEffectSprite.visible = false
+	sprite.play(curr_state)
 	sprite.visible = true
+
+func stop_animation() :
+	sprite.stop()
+
+func on_transition():
+	if !sprite.is_playing():
+		update_animation("idle")
 	
 func animation_direction() :
 	if cardinal_direction == Vector2.DOWN:
@@ -73,3 +77,11 @@ func decrease_stamina(minus : int) -> void:
 	
 func increase_stamina(plus : int) -> void:
 	stamina += plus
+
+func update_movement(delta: float):
+	velocity = direction * move_speed
+	state_machine._physics_process(delta)
+	move_and_slide()
+
+func sprite_is_playing() -> bool :
+	return sprite.is_playing()

@@ -1,40 +1,64 @@
 class_name ScopeState extends State
 
 @export_range(1.0, 20.0, 0.5) var decelerate_speed: float = 5.0
-@export var scope_sound : AudioStream 
+@export_range(0.1, 1.0, 0.05) var scope_move_multiplier: float = 0.5
 
-@onready var animator : AnimationPlayer = $"../../AnimationPlayer"
+@onready var idle_state : State = $"../Idle"
+@onready var walk_state : State = $"../Walk"
 
-@onready var idle_state : State = preload("res://scripts/states/IdleState.gd").new()
-@onready var walk_state : State = preload("res://scripts/states/WalkState.gd").new()
 
+var original_speed: float = 0.0
 var scoping : bool = false
+var exit_timer : float = 0.0
+var exit_started : bool = false
 
 func enter():
+	original_speed = player.move_speed
 	player.update_animation("scope")
-	animator.animation_finished.connect(end_action)
 	scoping = true
+	exit_timer = 0.0
+	exit_started = false
+
+func on_next_transition() -> void:
+	if !player.sprite.is_playing():
+		transition.emit("idle")
 
 func process(_delta : float) -> State:
-	#if player.current_tool == null || player.current_tool != Scope:
-		#return idle_state
-	#
-	#player.current_tool.process(_delta)
-	if player.velocity.length() > 0:
-		player.velocity -= player.velocity * decelerate_speed * _delta
+	if not Input.is_action_pressed("scope"):
+		player.velocity = Vector2.ZERO
+		
+		if not exit_started:
+			exit_started = true
+			exit_timer = 0.4  
+			player.update_animation("scope")
+		
+		exit_timer -= _delta
+		if exit_timer > 0.0:
+			return null
+		
+		return idle_state
+
+	exit_started = false
+	exit_timer = 0.0
 	
-	if scoping == false:
-		if player.direction == Vector2.ZERO:
-			return idle_state
-		else:
-			return walk_state
-	
+	if player.direction != Vector2.ZERO:
+		player.velocity = player.direction * player.move_speed
+		
+		player.set_direction() 
+		player.update_animation("walk") 
+		
+	elif player.velocity.length_squared() > 0.0:
+		player.velocity = player.velocity.move_toward(Vector2.ZERO, decelerate_speed * _delta)
+		player.update_animation("scope") 
+		
+	else:
+		player.velocity = Vector2.ZERO
+		player.update_animation("scope")
+
 	return null
 
-func end_action(_anim_name : String): 
-	scoping = false
-	
 func exit():
-	if animator.animation_finished.is_connected( end_action ):
-		animator.animation_finished.disconnect( end_action )
+	player.move_speed = original_speed
 	scoping = false
+	exit_timer = 0.0
+	exit_started = false
