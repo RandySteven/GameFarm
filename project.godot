@@ -53,4 +53,5 @@ scope={
 
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Animal"
+2d_physics/layer_4="Board"
 2d_physics/layer_5="Wall"
