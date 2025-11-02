@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c4x7clftlbpoa"]
+[gd_scene load_steps=10 format=3 uid="uid://c4x7clftlbpoa"]
 
 [ext_resource type="Script" uid="uid://cd8eff0bs6sh3" path="res://scripts/characters/animals/chicken.gd" id="1_1yv3s"]
 [ext_resource type="Texture2D" uid="uid://d0a2clqpbymdd" path="res://assets/sprites/Cute_Fantasy_Free/Animals/Chicken/Chicken.png" id="1_8lku0"]
@@ -47,6 +47,11 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_1yv3s"]
+vertices = PackedVector2Array(61.109375, -20.203125, 65.203125, 13.1484375, 20.132813, 35.289063, -34.5625, -6.2890625, -10.171875, -21.921875)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-13, -32, 70, -30, 76, 19, 19, 47, -52, -7)])
+
 [node name="Chicken" type="CharacterBody2D"]
 visibility_layer = 17
 collision_layer = 2
@@ -63,3 +68,6 @@ shape = SubResource("RectangleShape2D_8lku0")
 sprite_frames = SubResource("SpriteFrames_8lku0")
 animation = &"idle"
 frame_progress = 0.20446295
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_1yv3s")

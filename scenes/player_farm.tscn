@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cn48qj57y7hua"]
+[gd_scene load_steps=4 format=3 uid="uid://cn48qj57y7hua"]
 
 [ext_resource type="PackedScene" uid="uid://bma88c7bma6ed" path="res://scenes/grass_01.tscn" id="1_mmcj8"]
 [ext_resource type="PackedScene" uid="uid://j45mhs6c5nxo" path="res://scenes/farmer.tscn" id="2_mmcj8"]
 [ext_resource type="PackedScene" uid="uid://c4x7clftlbpoa" path="res://scenes/chicken.tscn" id="3_1acyo"]
-[ext_resource type="PackedScene" uid="uid://b5tw84po543hn" path="res://scenes/guild_board.tscn" id="4_j5yxp"]
 
 [node name="PlayerFarm" type="Node2D"]
 
@@ -13,9 +12,8 @@ layer_0/tile_data = PackedInt32Array(-196616, 65536, 0, -131080, 65536, 0, -6554
 
 [node name="Chicken" parent="." instance=ExtResource("3_1acyo")]
 position = Vector2(274, 183)
-
-[node name="GameBoard" parent="." instance=ExtResource("4_j5yxp")]
-position = Vector2(39, 307)
+min_walk_cycle = null
+max_walk_cycle = null
 
 [node name="Farmer" parent="." instance=ExtResource("2_mmcj8")]
 position = Vector2(14, 72)

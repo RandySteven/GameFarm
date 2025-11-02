@@ -16,11 +16,7 @@ func process(delta : float) -> State:
 func handle_input(event : InputEvent) -> State :
 	
 	if event.is_action_pressed("action"):
-		if player.tool_bag.get_current_tool().tool_name=="Scope":
-			return scope_state
-		if player.tool_bag.get_current_tool().tool_name=="Water Can":
-			return water_state
-		return null
+		return _current_state_action()
 	
 	if event is InputEventKey and event.pressed:
 		match event.keycode:
@@ -35,3 +31,10 @@ func handle_input(event : InputEvent) -> State :
 				player.tool_bag.equip_next_tool()
 	
 	return null	
+
+func _current_state_action() -> State:
+	if player.tool_bag.get_current_tool().tool_name=="Scope":
+		return scope_state
+	if player.tool_bag.get_current_tool().tool_name=="Water Can":
+		return water_state
+	return null
