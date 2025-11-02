@@ -2,6 +2,7 @@ class_name IdleState extends State
 
 @onready var walk_state : State = $"../Walk"
 @onready var scope_state : State = $"../Scope"
+@onready var water_state : State = $"../Water"
 
 func enter() -> void:
 	player.update_animation("idle")
@@ -14,10 +15,13 @@ func process(delta : float) -> State:
 
 func handle_input(event : InputEvent) -> State :
 	
-	if event.is_action_pressed("scope"):
-		return scope_state
+	if event.is_action_pressed("action"):
+		if player.tool_bag.get_current_tool().tool_name=="Scope":
+			return scope_state
+		if player.tool_bag.get_current_tool().tool_name=="Water Can":
+			return water_state
+		return null
 	
-	# Tool switching with number keys
 	if event is InputEventKey and event.pressed:
 		match event.keycode:
 			KEY_1, KEY_KP_1:
@@ -28,7 +32,6 @@ func handle_input(event : InputEvent) -> State :
 					player.tool_bag.equip_tool(1)
 					print("Switched to tool: ", player.tool_bag.get_all_tool_names()[1])
 			KEY_TAB:
-				# Cycle through tools with Tab
 				player.tool_bag.equip_next_tool()
 	
 	return null	

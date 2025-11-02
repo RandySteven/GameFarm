@@ -1,13 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://b5tw84po543hn"]
+[gd_scene load_steps=3 format=3 uid="uid://b5tw84po543hn"]
 
 [ext_resource type="Texture2D" uid="uid://df86ectpjf76" path="res://assets/sprites/Gemini Generated Image (1).png" id="1_xjo2a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s4bn3"]
+size = Vector2(258, 256)
 
 [node name="GameBoard" type="Area2D"]
 collision_layer = 8
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-2.999939, -7)
+position = Vector2(201, -200)
 scale = Vector2(0.25292963, 0.2529297)
 texture = ExtResource("1_xjo2a")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(200, -200)
+shape = SubResource("RectangleShape2D_s4bn3")

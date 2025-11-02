@@ -13,6 +13,7 @@ func initialize(player : CharacterBody2D):
 	for child in get_children():
 		if child is Tool:
 			tools.append(child)
+			print("tool "+child.name)
 	
 	if tools.size() > 0:
 		Tool.player = player

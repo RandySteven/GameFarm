@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://j45mhs6c5nxo"]
+[gd_scene load_steps=62 format=3 uid="uid://j45mhs6c5nxo"]
 
 [ext_resource type="Script" uid="uid://bnh5ybk76mo0s" path="res://scripts/Player.gd" id="1_rov4t"]
 [ext_resource type="Texture2D" uid="uid://dml0waiqjkggo" path="res://assets/sprites/Cute_Fantasy_Free/Player/Player.png" id="1_vltvv"]
@@ -6,9 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://boslil8l50pe3" path="res://assets/sprites/Cute_Fantasy_Free/Player/Player_Actions.png" id="3_go23t"]
 [ext_resource type="Script" uid="uid://bckqgefd0xm0q" path="res://scripts/states/WalkState.gd" id="3_rov4t"]
 [ext_resource type="Script" uid="uid://ce8n3gm1yihtf" path="res://scripts/states/IdleState.gd" id="4_go23t"]
+[ext_resource type="Script" uid="uid://de4hsapb0itxe" path="res://scripts/states/WaterState.gd" id="6_byn86"]
 [ext_resource type="Script" uid="uid://bp5evh6svgn3w" path="res://scripts/states/ScopeState.gd" id="7_loie6"]
 [ext_resource type="Script" uid="uid://c5vcum8dg8tej" path="res://scripts/tools/ToolBag.gd" id="8_a2y1s"]
 [ext_resource type="Script" uid="uid://drv5upwg3tixy" path="res://scripts/tools/Scope.gd" id="9_wv3kr"]
+[ext_resource type="Script" uid="uid://bylu35jijujxi" path="res://scripts/tools/WaterCan.gd" id="10_v8af3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rov4t"]
 radius = 7.0
@@ -434,6 +436,9 @@ script = ExtResource("3_rov4t")
 [node name="Scope" type="Node" parent="StateMachine"]
 script = ExtResource("7_loie6")
 
+[node name="Water" type="Node" parent="StateMachine"]
+script = ExtResource("6_byn86")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_kma2d")
 animation = &"water_side"
@@ -447,5 +452,8 @@ script = ExtResource("8_a2y1s")
 
 [node name="Scope" type="Node" parent="Bag/ToolBag"]
 script = ExtResource("9_wv3kr")
+
+[node name="WaterCan" type="Node" parent="Bag/ToolBag"]
+script = ExtResource("10_v8af3")
 
 [node name="ItemBag" type="Node" parent="Bag"]
