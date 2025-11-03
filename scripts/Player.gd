@@ -88,3 +88,6 @@ func update_movement(delta: float):
 
 func sprite_is_playing() -> bool :
 	return sprite.is_playing()
+
+func board_interaction():
+	pass
