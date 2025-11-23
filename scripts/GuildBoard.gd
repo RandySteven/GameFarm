@@ -12,17 +12,14 @@ var is_panel_visible: bool = false
 func _ready():
 	_load_quests()
 	_hide_quest_panel()
-	# Set CanvasLayer and this node to always process, even when tree is paused
 	if $CanvasLayer:
 		$CanvasLayer.process_mode = Node.PROCESS_MODE_ALWAYS
-	# This allows input to be processed even when tree is paused
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 func _process(_delta):
 	pass
 
 func _unhandled_input(event: InputEvent) -> void:
-	# ESC should always work when panel is visible, regardless of player_in_range
 	if event is InputEventKey and event.pressed:
 		if event.keycode == KEY_ESCAPE and is_panel_visible:
 			_hide_quest_panel()
@@ -61,13 +58,13 @@ func _show_quest_panel() -> void:
 		_display_quests()
 		quest_panel.visible = true
 		is_panel_visible = true
-		get_tree().paused = true  # Pause the game when viewing quests
+		get_tree().paused = true
 
 func _hide_quest_panel() -> void:
 	if quest_panel:
 		quest_panel.visible = false
 		is_panel_visible = false
-		get_tree().paused = false  # Unpause the game
+		get_tree().paused = false
 
 func _display_quests() -> void:
 	if not quest_label:
@@ -82,11 +79,18 @@ func _display_quests() -> void:
 			var quest = quests[i]
 			var quest_name = quest.get("name", "Unknown Quest")
 			var quest_reward = quest.get("reward", "No reward")
-			quest_text += "Quest %d: %s\n" % [i + 1, quest_name]
-			quest_text += "  Reward: %s\n\n" % quest_reward
+			var status = quest.get("status", "TO DO")
+			quest_text += _quest_string(quest_name, quest_reward, status)
 	
 	quest_text += "\nPress ESC to close"
 	quest_label.text = quest_text
+
+func _quest_string(quest_name : String, quest_reward : String, status : String) -> String:
+	var quest_str = ""
+	quest_str = "Quest: %s\n" % quest_name
+	quest_str = "  Reward: %s\n\n" % quest_reward
+	quest_str = "Status: %s\n\n" % status
+	return quest_str
 
 func _on_area_2d_body_entered(body):
 	print("masuk ke range ", body)

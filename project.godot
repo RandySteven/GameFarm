@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="farm"
-run/main_scene="uid://cn48qj57y7hua"
+run/main_scene="uid://b6ay8tj4lbt4w"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 

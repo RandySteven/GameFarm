@@ -1,10 +1,12 @@
 [
 	{
 		"name": "Cari kucing",
-		"reward": "Hati seseorang kiw kiw"
+		"reward": "Hati seseorang kiw kiw",
+		"status": "BACKLOG"
 	},
 	{
 		"name": "Cari istri",
-		"reward": "Suami orang"
+		"reward": "Suami orang",
+		"status": "COMPLETED"
 	}
 ]

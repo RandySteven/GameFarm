@@ -1,0 +1,51 @@
+{
+	"dummy": {
+		"name": "Dummy",
+		"birthday": "11-SUMMER",
+		"listOfEvents": [],
+		"relationShipLevel": 0,
+		"dialogues": [
+			{
+				"id": "dummy_d_001",
+				"text": "Hi hari yang cerah",
+				"conditions": {
+					"all": [
+						{ 
+							"fact": "interactionCount", 
+							"operator": "equals", 
+							"value": 1 
+						},
+						{ 
+							"fact": "current_weather", 
+							"operator": "equals", 
+							"value": "SUNNY" 
+						}
+					]
+				}
+			},
+			{
+				"id": "dummy_d_002",
+				"text": "Hujan gak boleh kerja",
+				"conditions": {
+					"all": [
+						{
+							"fact": "interactionCount",
+							"operator": "equals",
+							"value": 2
+						},
+						{
+							"fact": "current_weather",
+							"operator": "equals",
+							"value": "RAIN"
+						}
+					]
+				}
+			}
+		]
+	},
+	"bob": {
+		"name": "Bob",
+		"birthday": "11-SPRING",
+		"listOfEvents": []
+	}
+}

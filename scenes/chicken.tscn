@@ -48,9 +48,9 @@ animations = [{
 }]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_1yv3s"]
-vertices = PackedVector2Array(61.109375, -20.203125, 65.203125, 13.1484375, 20.132813, 35.289063, -34.5625, -6.2890625, -10.171875, -21.921875)
+vertices = PackedVector2Array(61.109375, -20.203125, 64.796875, 9.8828125, -5.9765625, 15.7109375, -34.609375, -6.2578125, -10.171875, -21.921875)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-13, -32, 70, -30, 76, 19, 19, 47, -52, -7)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-13, -32, 70, -30, 76, 19, -9, 26, -52, -7)])
 
 [node name="Chicken" type="CharacterBody2D"]
 visibility_layer = 17
@@ -70,4 +70,5 @@ animation = &"idle"
 frame_progress = 0.20446295
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+position = Vector2(-14, 4)
 navigation_polygon = SubResource("NavigationPolygon_1yv3s")
