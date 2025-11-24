@@ -14,8 +14,7 @@ func _load_npc_data(file_path: String):
 		npc_data = parsed_result
 		print("NPC data loaded successfully.")
 	else:
-		push_error("JSON Parse Error: NPC data file is malformed.")
-		
+		push_error("JSON Parse Error: NPC data file is malformed.")		
 	pass
 
 func get_npc(npc_name : String) -> Dictionary:

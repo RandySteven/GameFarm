@@ -46,6 +46,7 @@
 	"bob": {
 		"name": "Bob",
 		"birthday": "11-SPRING",
-		"listOfEvents": []
+		"listOfEvents": [],
+		"relationShipLevel": 0
 	}
 }
